@@ -1,0 +1,17 @@
+from LinkedLists.LinkedList import LinkedList
+
+l = LinkedList()
+l.insertatbegining(44)
+l.insertatend(323)
+l.insertatbegining(123)
+l.insertatend(54)
+print("The Data in First Element :", l.headelement())
+print("The Data in Last Element :", l.tailelement())
+print("The Number of Elements of LinkedList :", l.count)
+print("Before Delete")
+LinkedList.display(l.head)
+l.delete(54)
+print("After Delete")
+l.display(l.head)
+print("The Data in First Element :", l.headelement())
+print("The Data in Last Element :", l.tailelement())
