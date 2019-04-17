@@ -112,7 +112,6 @@ class AVLTree:
         node.parent = temp_parent
         # go from the inserted node towards the root and check if the tree is unbalanced at any node
         temp = node
-
         balance = 0
         while temp is not None:
             balance = self.mod(self.get_balance(temp))
