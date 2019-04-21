@@ -1,5 +1,5 @@
 import math
-
+from queue import Queue
 
 class Heap:
     # the maximum heap size
@@ -12,24 +12,24 @@ class Heap:
     #  get the index of parent element
     @staticmethod
     def parent(index):
-        return (index - 1) / 2
+        return int((index - 1) / 2)
 
     #get the index of left child
     @staticmethod
     def left(index):
-        return (2 * index) + 1
+        return int((2 * index) + 1)
 
     # get the index of right child
     @staticmethod
     def right(index):
-        return (2 * index) + 2
+        return int((2 * index) + 2)
 
     # check if the heap has reached its max size
     def is_full(self):
         if self.current_position == Heap.heap_size:
-            return False
-        else:
             return True
+        else:
+            return False
 
     # swap two elements in heap using their indices
     def swap(self, i, j):
@@ -98,3 +98,26 @@ class Heap:
             i = i + 1
         for i in range(0, len):
             print(self.heap[i])
+
+    # print the level-order-traversal of heap
+    def heap_print(self):
+        queue=Queue(maxsize=0)
+        index=0
+        if self.current_position <0:
+            return None
+        queue.put(index)
+        l=[]
+        while queue.empty() is False:
+            index=queue.get()
+            left=self.left(index)
+            right=self.right(index)
+            if left <= self.current_position:
+                queue.put(left)
+            if right <= self.current_position:
+                queue.put(right)
+            l.append(self.heap[index])
+        return l
+
+
+
+
