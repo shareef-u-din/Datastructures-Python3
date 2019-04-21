@@ -99,24 +99,7 @@ class Heap:
         for i in range(0, len):
             print(self.heap[i])
 
-    # print the level-order-traversal of heap
-    def heap_print(self):
-        queue=Queue(maxsize=0)
-        index=0
-        if self.current_position <0:
-            return None
-        queue.put(index)
-        l=[]
-        while queue.empty() is False:
-            index=queue.get()
-            left=self.left(index)
-            right=self.right(index)
-            if left <= self.current_position:
-                queue.put(left)
-            if right <= self.current_position:
-                queue.put(right)
-            l.append(self.heap[index])
-        return l
+
 
 
 

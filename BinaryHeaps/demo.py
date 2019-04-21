@@ -14,4 +14,5 @@ heap.insert(99)
 heap.insert(78)
 heap.insert(61)
 heap.insert(22)
-print(heap.heap_print())
+for i in range(0,heap.current_position+1):
+    print(heap.heap[i]," ", i)
