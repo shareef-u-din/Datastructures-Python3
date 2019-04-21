@@ -1,6 +1,7 @@
 import math
 from queue import Queue
 
+
 class Heap:
     # the maximum heap size
     heap_size = 20
@@ -14,7 +15,7 @@ class Heap:
     def parent(index):
         return int((index - 1) / 2)
 
-    #get the index of left child
+    # get the index of left child
     @staticmethod
     def left(index):
         return int((2 * index) + 1)
@@ -70,7 +71,7 @@ class Heap:
         self.current_position = self.current_position + 1
         self.heap[self.current_position] = item
         current = self.current_position
-        while self.heap[current] < self.heap[self.parent(current)]:
+        while self.heap[current] > self.heap[self.parent(current)]:
             self.swap(current, self.parent(current))
             current = self.parent(current)
 
@@ -99,8 +100,21 @@ class Heap:
         for i in range(0, len):
             print(self.heap[i])
 
-
-
-
-
-
+    # print the level-order-traversal of heap
+    def heap_print(self):
+        queue = Queue(maxsize=0)
+        index = 0
+        if self.current_position < 0:
+            return None
+        queue.put(index)
+        l = []
+        while queue.empty() is False:
+            index = queue.get()
+            left = self.left(index)
+            right = self.right(index)
+            if left <= self.current_position:
+                queue.put(left)
+            if right <= self.current_position:
+                queue.put(right)
+            l.append(self.heap[index])
+        return l
