@@ -2,33 +2,40 @@ import math
 
 
 class Heap:
+    # the maximum heap size
     heap_size = 20
 
     def __init__(self):
         self.heap = [0] * Heap.heap_size
         self.current_position = -1
 
+    #  get the index of parent element
     @staticmethod
     def parent(index):
         return (index - 1) / 2
 
+    #get the index of left child
     @staticmethod
     def left(index):
         return (2 * index) + 1
 
+    # get the index of right child
     @staticmethod
     def right(index):
         return (2 * index) + 2
 
+    # check if the heap has reached its max size
     def is_full(self):
         if self.current_position == Heap.heap_size:
             return False
         else:
             return True
 
+    # swap two elements in heap using their indices
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
+    # check if the node is leaf-node
     def is_leaf(self, index):
         n = self.current_position
         if n <= 0:
@@ -39,6 +46,7 @@ class Heap:
         else:
             return True
 
+    # max-heapify the heap
     def max_heapify(self, index):
         if self.is_leaf(index):
             return
@@ -54,6 +62,7 @@ class Heap:
             self.swap(index, largest)
             self.max_heapify(largest)
 
+    # insert an item into the heap
     def insert(self, item):
         if self.is_full():
             print("Heap is full...")
@@ -65,6 +74,7 @@ class Heap:
             self.swap(current, self.parent(current))
             current = self.parent(current)
 
+    # get the first element from the max-heap
     def extract_max(self):
         if self.current_position == -1:
             return None
@@ -73,11 +83,13 @@ class Heap:
         self.current_position = self.current_position - 1
         self.max_heapify(0)
 
+    # delete the element from the heap
     def delete(self, index):
         self.swap(index, self.current_position)
         self.current_position = self.current_position - 1
         self.max_heapify(index)
 
+    # sort the heap and print it
     def heap_sort(self):
         len = self.current_position
         i = 0
